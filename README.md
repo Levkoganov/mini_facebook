@@ -16,7 +16,6 @@ server is running on: http://localhost:5000
 
 # build-in users:
 (has admin role)
-
 username:ADMIN
 password:ADMIN
 
