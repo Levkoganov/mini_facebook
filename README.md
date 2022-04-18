@@ -17,9 +17,7 @@ server is running on: http://localhost:5000
 ## build-in users:
 username:ADMIN
 password:ADMIN
-
 username:USER
 password:USER
-
 username:john doe
 password:123
