@@ -14,7 +14,8 @@ server is running on: http://localhost:5000
 2) npm install.
 3) npm start.
 
-## build-in users:
+# build-in users:
+(have admin role)
 username:ADMIN
 password:ADMIN
 
