@@ -11,13 +11,15 @@ import { CardUsersStyled } from "../styles/CardUsers.style";
 // Imports
 import ContentUsers from "./users/ContentUser";
 import { AiOutlineLike } from "react-icons/ai";
-import { addLike } from "../functions/addLike";
+import useAddLike from "../../hooks/useAddLike";
+// import { addLike } from "../functions/addLike";
 
 function ContentOtherUsers() {
   const params = useParams(); // Get params info
-  const [otherPosts, setOtherPosts] = useState([]); 
+  const [otherPosts, setOtherPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorHandler, setErrorHandler] = useState("");
+  const { likedPost, addLikeToPost } = useAddLike(otherPosts);
 
   useEffect(() => {
     (async function getUserPostInfo() {
@@ -31,7 +33,7 @@ function ContentOtherUsers() {
           setOtherPosts(res.data.message);
           setErrorHandler("");
 
-        // If no posts
+          // If no posts
         } else {
           setErrorHandler(`${params.username} have 0 messages`);
         }
@@ -39,12 +41,14 @@ function ContentOtherUsers() {
         console.log(err);
       }
     })();
+  // Solution #1
   }, [params.id, setOtherPosts, params.username]);
 
-  // Add like
-  const handleAddLike = (id) => {
-    return addLike(id, otherPosts, setOtherPosts);
-  };
+  /* 
+    Solution #2
+    Render the component everytime there is a new like
+    }, [params.id, setOtherPosts, params.username, likedPost]); 
+  */
 
   return (
     <div>
@@ -82,7 +86,7 @@ function ContentOtherUsers() {
               style={{ overflowWrap: "anywhere" }}
             >
               {/* Loading */}
-              {isLoading && <p className="text-center"><LinearProgress /></p>}
+              { isLoading && <p className="text-center"><LinearProgress /></p> }
               {/* No posts */}
               {errorHandler ? (
                 <p className="text-center">{errorHandler}</p>
@@ -97,11 +101,14 @@ function ContentOtherUsers() {
                       </div>
                       <Button
                         variant="outlined"
-                        onClick={() => handleAddLike(data._id)}
+                        onClick={() => addLikeToPost(data._id)}
                       >
                         {data.likes}
                         <AiOutlineLike />
                       </Button>
+                      {/* <Button variant="outlined" onClick={() => handleclick(data._id)}>
+                        test
+                      </Button> */}
                       <hr />
                     </div>
                   ))}

@@ -1,25 +1,29 @@
-import axios from "axios";
+//                 *********OLD**********                   //
 
-export const addLike = async (id, post, setPost) => {
-  try {
-    await axios.put(`/posts/${id}`); // Add like
-    const userPost = [...post]; // Post data
+// import axios from "axios";
 
-    // Add like for the current post
-    const existingPost = post.filter((product) => product._id === id && product.likes++);
+// export const addLike = async (id, post, setPost) => {
+//   try {
+//     await axios.put(`/posts/${id}`); // Add like
+//     const userPost = [...post]; // Post data
 
-    const payload = {
-      likes: existingPost.likes,
-      header: existingPost.header,
-      description: existingPost.description
-    }
+//     // Add like for the current post
+//     const existingPost = post.filter((product) => product._id === id && product.likes++);
 
-    // Update liked post
-    userPost[existingPost] = payload
-    setPost(userPost); 
+//     const payload = {
+//       likes: existingPost.likes,
+//       header: existingPost.header,
+//       description: existingPost.description
+//     }
 
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     // Update liked post
+//     userPost[existingPost] = payload
+//     setPost(userPost); 
+
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+//                 *********OLD**********                   //
 

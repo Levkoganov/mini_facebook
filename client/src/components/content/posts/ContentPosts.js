@@ -6,11 +6,13 @@ import { Button, LinearProgress } from "@mui/material";
 
 // Imports
 import { userContext } from "../../../context/UserContext";
-import { addLike } from "../../functions/addLike";
+// import { addLike } from "../../functions/addLike";
+import useAddLike from "../../../hooks/useAddLike";
 
 function ContentPost() {
   const { myPosts, setMyPosts, userId } = useContext(userContext);
   const [isLoading, setIsLoading] = useState(true);
+  const { likedPost, addLikeToPost } = useAddLike(myPosts);
 
   useEffect(() => {
     (async function getPosts() {
@@ -25,12 +27,14 @@ function ContentPost() {
         console.log(err);
       }
     })();
+  // Solution #1
   }, [userId, setMyPosts, myPosts.length]);
 
-  // Add like
-  const handleAddLike = (id) => {
-    return addLike(id, myPosts, setMyPosts);
-  };
+  /* 
+    Solution #2
+    Render the component everytime there is a new like
+    }, [userId, setMyPosts, myPosts.length]);
+  */
 
   return (
     <div>
@@ -44,7 +48,7 @@ function ContentPost() {
             <h5>{data.header}</h5>
             <p>{data.description}</p>
           </div>
-          <Button variant="outlined" onClick={() => handleAddLike(data._id)}>
+          <Button variant="outlined" onClick={() => addLikeToPost(data._id)}>
             {data.likes} <AiOutlineLike />
           </Button>
           <hr />
