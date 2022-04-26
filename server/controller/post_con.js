@@ -35,6 +35,7 @@ const addLike = async (req, res) => {
     res.json({message: addLike}) // Send updated post
 
   } catch (err) {
+    res.json({message_error: "something went wrong"})
     console.log(err);
   }
 };
