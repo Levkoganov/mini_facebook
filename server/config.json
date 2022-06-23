@@ -1,4 +1,0 @@
-{
-  "mongodb": "mongodb+srv://lev:123@minifacebook.byfib.mongodb.net/mini_facebook?retryWrites=true&w=majority",
-  "secret_token": "0744d0ec453e4d378c2bf80ddd009d4d"
-}
