@@ -1,0 +1,11 @@
+.user-title {
+  font-family: Franklin Gothic Medium;
+  border-bottom: 1px black solid;
+  padding-bottom: 30px;
+  margin: 0;
+}
+
+.header_description_post {
+  border-left: 1.2px solid #1976d269;
+  padding-left: 8px;
+}
